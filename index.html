@@ -54,8 +54,7 @@ body {
     backface-visibility: hidden;
     overflow: hidden;
     cursor: pointer;
-    background:
-      linear-gradient(135deg, #fffdf7, #f1e6cb);
+    background: linear-gradient(135deg, #fffdf7, #f1e6cb);
     border: 5px solid #c59a48;
 }
 
@@ -221,7 +220,8 @@ body {
     font-size: 13px;
 }
 
-.edit-area button, .action-button {
+.edit-area button,
+.action-button {
     border: none;
     border-radius: 5px;
     padding: 9px 12px;
@@ -246,10 +246,12 @@ body {
     .scene {
         height: 88vh;
     }
+
     .inside-inner {
         padding: 14px;
     }
 }
+
 </style>
 </head>
 
@@ -260,6 +262,7 @@ body {
 
         <!-- FRONT COVER -->
         <div class="page cover" id="cover" onclick="openInvitation()">
+
             <div class="cover-inner">
 
                 <img src="logo.png"
@@ -267,21 +270,28 @@ body {
                      alt="IMDR Logo"
                      onerror="this.style.display='none'">
 
-                <h1>INSTITUTE OF<br>
-                MEDIA DEVELOPMENT<br>
-                AND RESEARCH</h1>
+                <h1>
+                    INSTITUTE OF<br>
+                    MEDIA DEVELOPMENT<br>
+                    AND RESEARCH
+                </h1>
 
                 <div class="gold-line"></div>
 
-                <div class="subtitle">Cordially Invites You</div>
+                <div class="subtitle">
+                    Cordially Invites You
+                </div>
 
-                <p class="tap">✦ TOUCH TO OPEN ✦</p>
+                <p class="tap">
+                    ✦ TOUCH TO OPEN ✦
+                </p>
 
             </div>
         </div>
 
         <!-- INSIDE PAGE -->
         <div class="page inside">
+
             <div class="inside-inner">
 
                 <img src="logo.png"
@@ -315,6 +325,7 @@ body {
                 </div>
 
                 <div class="details">
+
                     <strong>DATE</strong><br>
                     Friday, 20 November 2026<br><br>
 
@@ -325,6 +336,7 @@ body {
                     No. 774/C, High Level Road,<br>
                     Panagoda, Homagama,<br>
                     Sri Lanka.
+
                 </div>
 
                 <img src="qr.png"
@@ -337,11 +349,16 @@ body {
                 </p>
 
                 <div class="edit-area">
+
                     <input
                         type="text"
                         id="nameInput"
                         placeholder="Enter Guest Name">
-                    <button onclick="changeName(event)">Update</button>
+
+                    <button onclick="changeName(event)">
+                        Update
+                    </button>
+
                 </div>
 
                 <p class="hint">
@@ -360,29 +377,53 @@ body {
 </div>
 
 <script>
+
 const book = document.getElementById("book");
 
+// GET GUEST NAME FROM URL
+const params = new URLSearchParams(window.location.search);
+const guest = params.get("name");
+
+if (guest && guest.trim().length > 0) {
+
+    document.getElementById("guestName").textContent = guest.trim();
+
+    // Hide name editing options for personalized invitations
+    document.querySelector(".edit-area").style.display = "none";
+    document.querySelector(".hint").style.display = "none";
+
+}
+
+// OPEN INVITATION
 function openInvitation() {
     book.classList.add("open");
 }
 
+// CLOSE INVITATION
 function closeInvitation(event) {
     event.stopPropagation();
     book.classList.remove("open");
 }
 
+// CHANGE GUEST NAME
 function changeName(event) {
+
     event.stopPropagation();
 
     const input = document.getElementById("nameInput");
     const name = input.value.trim();
 
     if (name.length > 0) {
+
         document.getElementById("guestName").textContent = name;
+
     } else {
+
         alert("Please enter the guest name.");
+
     }
 }
+
 </script>
 
 </body>
